@@ -1,6 +1,6 @@
 import React from 'react';
 
-function NewPlayerForm() {
+function Leaderboard() {
     return (
         <div>
             
@@ -8,4 +8,4 @@ function NewPlayerForm() {
     );
 }
 
-export default NewPlayerForm;
+export default Leaderboard;
