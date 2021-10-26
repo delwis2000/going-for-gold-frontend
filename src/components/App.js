@@ -1,6 +1,7 @@
-import { Route, Switch } from 'react-router';
+import { Route, Switch } from 'react-router-dom';
 import './App.css';
 import GameBoard from './GameBoard';
+import GameList from './GameList';
 
 function App() {
   return (
@@ -11,8 +12,11 @@ function App() {
 
 
         {/* vvv Include routes for game pages here vvv */}
-        <Route path='/games'>
+        <Route path='/games/:gameId'>
           <GameBoard />
+        </Route>
+        <Route path='/games'>
+          <GameList />
         </Route>
 
         <Route path='/'>
