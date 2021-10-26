@@ -45,6 +45,35 @@
   background-color: black;
 }
 
+.question-detail {
+  background-color: #060CE9;
+  color: white;
+  font-family: 'Libre Baskerville';
+  margin: 15px;
+  box-sizing: border-box;
+  width: 900px;
+  height: 600px;
+  font-size: 46px;
+  text-shadow: 3px 4px black;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 50px;
+  border-radius: 1%;
+}
+
+.question-detail span {
+  align-content: center;
+  justify-content: center;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.question-detail button {
+  width: 100px;
+  margin-top: 20px;
+}
+
 .question-board {
   display: flex;
   font-family: 'Yantramanav', sans-serif;
@@ -64,7 +93,7 @@
 .category-title, .question-tile {
   width: 150px;
   height: 90px;
-  background-color: blue;
+  background-color: #060CE9;
   text-align: center;
   word-wrap: normal;
   text-shadow: 2px 3px black;
@@ -90,10 +119,11 @@
   flex-grow: 1
 }
 
-.question-tile {
+.question-tile a {
   color: rgb(235, 199, 0);
   font-size: 42px;
   line-height: 100px;
+  text-decoration: none;
 }
 
 .score-board {
@@ -106,7 +136,7 @@
   padding: 10px;
   border: 1px solid black;
   text-align: center;
-  background-color: blue;
+  background-color: #060CE9;
   width: 150px;
   border-radius: 3%;
 }
@@ -117,7 +147,9 @@
 
 .player-score-card img {
   border-radius: 20px;
-  max-width: 100px;
+  object-fit: cover;
+  width: 100px;
+  height: 100px;
 }
 
 .player-score-card p {
