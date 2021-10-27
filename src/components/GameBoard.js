@@ -16,9 +16,13 @@ function GameBoard() {
         // TODO: fetch game by id based on URL
         fetch(`${process.env.REACT_APP_API_URL}/games/${gameId}`)
             .then(resp => resp.json())
-            .catch(err => console.error('err'))
+            .catch(err => {
+                console.error(err);
+                console.error(gameId);
+                console.error(`${process.env.REACT_APP_API_URL}/games?id=${gameId}`);
+            })
             .then(data => setGameData(data))
-    }, []);
+    }, [gameId]);
 
     function deepCloner(target) {
         if (Array.isArray(target)) {
@@ -113,6 +117,31 @@ function GameBoard() {
         }
     };
 
+    const handlePayout = () => {
+        const winningPlayer = gameData.players.reduce((prev, curr) => (prev.winnings > curr.winnings ? prev : curr), gameData.players[0])
+        console.log(winningPlayer);
+        fetch(`${process.env.REACT_APP_API_URL}/players/${winningPlayer.playerId}`)
+            .then(resp => resp.json())
+            .then(winningPlayerInfo => {
+                const options = {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({winnings: winningPlayerInfo.winnings + winningPlayer.winnings})
+                }
+                fetch(`${process.env.REACT_APP_API_URL}/players/${winningPlayer.playerId}`, options)
+                    .then(resp => resp.json())
+                    .then(updatedPlayer => {
+                        const options = {
+                            method: 'DELETE'
+                        }
+                        fetch(`${process.env.REACT_APP_API_URL}/games/${gameId}`, options)
+                            .then(() => history.push('/'))
+                    })
+            })
+    }
+
     if (!gameData) return <div className='game-container'><h1 style={{color: 'white', margin: 0, padding: '20px'}}>Loading</h1></div>;
 
     if (Object.keys(gameData).length === 0) return <div className='game-container'><h1 style={{color: 'white', margin: 0, padding: '20px'}}>Invalid request</h1></div>;
@@ -133,6 +162,9 @@ function GameBoard() {
             </div>
             <div>
                 <CurrentPlayers players={gameData.players} activePlayer={activePlayer} handlePlayerClick={handlePlayerClick} />
+            </div>
+            <div>
+                <button onClick={handlePayout}>Close Game and Pay Out</button>
             </div>
         </div>
     );

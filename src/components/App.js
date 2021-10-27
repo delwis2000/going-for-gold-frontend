@@ -2,6 +2,7 @@ import { Route, Switch } from 'react-router-dom';
 import './App.css';
 import GameBoard from './GameBoard';
 import GameList from './GameList';
+import NewGameForm from './NewGameForm';
 import Leaderboard from './Leaderboard';
 import NavBar from './NavBar';
 
@@ -17,6 +18,9 @@ function App() {
 
 
         {/* vvv Include routes for game pages here vvv */}
+        <Route path='/games/new'>
+          <NewGameForm />
+        </Route>
         <Route path='/games/:gameId'>
           <GameBoard />
         </Route>
