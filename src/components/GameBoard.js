@@ -3,6 +3,7 @@ import { useParams, Switch, Route, useHistory } from 'react-router-dom';
 import CategoryColumn from './CategoryColumn';
 import CurrentPlayers from './CurrentPlayers';
 import QuestionDetail from './QuestionDetail';
+import styled from 'styled-components';
 
 function GameBoard() {
     const [gameData, setGameData] = useState(null);
@@ -149,8 +150,8 @@ function GameBoard() {
     const activePlayer = !history.location.pathname.includes('/questions/') ? gameData.boardControl : answeringPlayer.id;
 
     return (
-        <div className='game-container'>
-            <div className='question-board'>
+        <GameContainer>
+            <QuestionBoard>
                 <Switch>
                     <Route path='/games/:gameId/questions/:questionId'>
                         <QuestionDetail gameData={gameData} handlePass={handlePass} guess={guess} handleGuessChange={handleGuessChange} handleGuessSubmit={handleGuessSubmit} answeringPlayer={answeringPlayer} />
@@ -159,15 +160,52 @@ function GameBoard() {
                         {gameData.categories.map(category => <CategoryColumn key={category.id} category={category} />)}
                     </Route>
                 </Switch>
-            </div>
+            </QuestionBoard>
             <div>
                 <CurrentPlayers players={gameData.players} activePlayer={activePlayer} handlePlayerClick={handlePlayerClick} />
             </div>
             <div>
-                <button onClick={handlePayout}>Close Game and Pay Out</button>
+                <CloseButton onClick={handlePayout}>Close Game and Pay Out</CloseButton>
             </div>
-        </div>
+        </GameContainer>
     );
 }
 
 export default GameBoard;
+
+const GameContainer = styled.div`
+    /* width: 100vw; */
+    height: 100vh;
+    background-color: black;
+`;
+
+const QuestionBoard = styled.div`
+    display: flex;
+    font-family: ${props => props.theme.fonts.sansSerif};
+    background-color: black;
+    justify-content: center;
+    margin-bottom: 10px;
+    div {
+        font-weight: bolder;
+    }
+`;
+
+const CloseButton = styled.button`
+    cursor: pointer;
+    border: 3px solid #f00;
+    border-radius: 10px;
+    color: ${props => props.theme.colors.jeopardyYellow};
+    text-shadow: 1px 1px black;
+    background-color: ${props => props.theme.colors.jeopardyBlue};
+    padding: 10px;
+    font-family: ${props => props.theme.fonts.sansSerif};
+    /* font-weight: bold; */
+    font-size: large;
+    display: block;
+    margin: auto;
+    margin-top: 20px;
+    transition: background-color 0.25s;
+    &:hover {
+        background-color: ${props => props.theme.colors.jeopardyDarkBlue};
+    }
+`;
