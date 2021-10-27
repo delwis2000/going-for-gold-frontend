@@ -25,7 +25,7 @@ function QuestionDetail({ gameData, handlePass, guess, handleGuessChange, handle
     if (questionData.completed === true) history.push(`/games/${gameId}`)
 
     const guessForm = answeringPlayer.name ? 
-        <form onSubmit={(e) => handleGuessSubmit(e, +questionId)} autocomplete='off'>
+        <form onSubmit={(e) => handleGuessSubmit(e, +questionId)} autoComplete='off'>
             <label htmlFor='guess-input'>{answeringPlayer.name}: </label>
             <input type='text' id='guess-input' onChange={handleGuessChange} placeholder='Answer' value={guess} />
             <input type='submit' />
