@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 
-function GameListRow({ game }) {
+function GameListRow({ game, rowClass }) {
     const [players, setPlayers] = useState();
 
     useEffect(() => {
@@ -15,12 +15,14 @@ function GameListRow({ game }) {
     return (
         // <Link to={`/games/${game.id}`}>
         <>
-            <Link to={`/games/${game.id}`}>
+            <Link to={`/games/${game.id}`} className={rowClass}>
                 Game {game.id}
             </Link>
             {game.players.map(includedPlayer => (
-                <div key={includedPlayer.playerId}>
-                    {players.find(player => player.id === includedPlayer.playerId).name} (${includedPlayer.winnings})
+                <div key={includedPlayer.playerId} className={rowClass}>
+                    {players.find(player => player.id === includedPlayer.playerId).name} 
+                    {/* (${includedPlayer.winnings}) */}
+                    {includedPlayer.winnings < 0 ? ` (-$${-includedPlayer.winnings})` : ` ($${includedPlayer.winnings})`}
                 </div>
             ))}
         </>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
+import styled from 'styled-components';
 
 function QuestionDetail({ gameData, handlePass, guess, handleGuessChange, handleGuessSubmit, answeringPlayer }) {
     const [questionData, setQuestionData] = useState()
@@ -32,12 +33,82 @@ function QuestionDetail({ gameData, handlePass, guess, handleGuessChange, handle
         </form> : <div>Click on a player</div>;
 
     return (
-        <div className='question-detail'>
+        <QuestionDetailContainer className='question-detail'>
             <span>{questionData.question}</span>
             {guessForm}
             <div><button onClick={() => handlePass(+questionId)}>Pass</button></div>
-        </div>
+        </QuestionDetailContainer>
     );
 }
 
 export default QuestionDetail;
+
+const QuestionDetailContainer = styled.div`
+    background-color: ${props => props.theme.colors.jeopardyBlue};
+    color: white;
+    font-family: ${props => props.theme.fonts.serif};
+    margin: 15px;
+    box-sizing: border-box;
+    width: 900px;
+    height: 600px;
+    font-size: 46px;
+    text-shadow: 3px 4px black;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 50px;
+    border-radius: 1%;
+
+    span{
+        align-content: center;
+        justify-content: center;
+        flex-direction: column;
+        flex-grow: 1;
+    }
+
+    input[type='text']{
+        padding: 5px;
+        margin: 0 20px;
+        border-radius: 5px;
+
+        background-color: ${props => props.theme.colors.jeopardyDarkBlue};
+
+        color: white;
+        font-family: ${props => props.theme.fonts.sansSerif};
+        font-size: 18px;
+        text-shadow: 1px 1px black;
+    }
+
+    button, input[type='submit']{
+        width: 100px;
+        /* margin-top: 25px; */
+        padding: 10px;
+        border: 3px solid ${props => props.theme.colors.jeopardyYellow};
+        border-radius: 10px;
+
+        background-color: ${props => props.theme.colors.jeopardyBlue};
+
+        font-family: ${props => props.theme.fonts.sansSerif};
+        color: white;
+        /* font-weight: bold; */
+        font-size: large;
+        text-shadow: 1px 2px black;
+
+        cursor: pointer;
+        transition: background-color 0.25s;
+
+        &:hover {
+            background-color: ${props => props.theme.colors.jeopardyDarkBlue};
+        }
+    }
+
+    button {
+        margin-top: 40px;
+    }
+
+    form {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+`;

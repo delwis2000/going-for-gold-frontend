@@ -4,10 +4,26 @@ import './index.css';
 import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
+
+const theme = {
+  colors: {
+    jeopardyDarkBlue: '#0409ab',
+    jeopardyBlue: '#060CE9',
+    jeopardyYellow: '#ebc800'
+  },
+  fonts: {
+    sansSerif: "'Yantramanav', sans-serif",
+    serif: "'Libre Baskerville', serif",
+    handwriting: "'Caveat', cursive"
+  }
+};
 
 ReactDOM.render(
   <BrowserRouter>
-    <App />
+    <ThemeProvider theme={theme}>
+      <App />
+    </ThemeProvider>
   </BrowserRouter>,
   document.getElementById('root')
 );
