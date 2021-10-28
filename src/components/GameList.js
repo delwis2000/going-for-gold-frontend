@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import GameListRow from './GameListRow';
 import styled from 'styled-components';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 function GameList() {
     const [gameList, setGameList] = useState([]);
@@ -68,6 +68,7 @@ const GameListContainer = styled.div`
     color: white;
     a {
         color: ${props => props.theme.colors.jeopardyYellow};
+        text-decoration: none;
     }
     h3{
         grid-column: 1 / span 4;

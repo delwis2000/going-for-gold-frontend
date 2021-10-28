@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
+const DEFAULT_IMAGE = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'
+
 function PlayerScore({ player, activePlayer, handlePlayerClick }) {
     const [playerInfo, setPlayerInfo] = useState();
 
@@ -13,10 +15,9 @@ function PlayerScore({ player, activePlayer, handlePlayerClick }) {
     if (!playerInfo) return <p>Loading</p>
 
     return (
-        <ScoreCard className={activePlayer === player.playerId ? 'player-score-card active' : 'player-score-card'} onClick={() => handlePlayerClick({id: player.playerId, name: playerInfo.name})}>
-            <img src={playerInfo.image} alt={playerInfo.name} />
+        <ScoreCard className={activePlayer === player.playerId ? 'active' : ''} onClick={() => handlePlayerClick({id: player.playerId, name: playerInfo.name})}>
+            <img src={playerInfo.image === '' ? DEFAULT_IMAGE : playerInfo.image} alt={playerInfo.name} />
             {player.winnings < 0 ? <p className='negative'>-${-player.winnings}</p> : <p>${player.winnings}</p>}
-            {/* <p className={player.winnings < 0 ? 'negative' : null}>${player.winnings}</p> */}
             <h3>{playerInfo.name}</h3>
         </ScoreCard>
     );
@@ -39,6 +40,7 @@ const ScoreCard = styled.div`
     }
 
     img{
+        border: 3px solid white;
         border-radius: 20px;
         object-fit: cover;
         width: 100px;

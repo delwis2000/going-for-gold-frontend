@@ -65,7 +65,13 @@ function NewGameForm() {
         }
     };
 
-    const options = playerList.map(player => <option key={player.id} value={player.id}>{player.name}</option>);
+    const options = [...playerList]
+        .sort((a, b) => {
+            if (a.name > b.name) return 1;
+            if (a.name < b.name) return -1;
+            return 0;
+        })
+        .map(player => <option key={player.id} value={player.id}>{player.name}</option>);
     options.unshift(<option key='0' value=''></option>);
 
     const inputs = [1, 2, 3].map(id => (
