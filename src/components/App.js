@@ -5,6 +5,7 @@ import GameList from './GameList';
 import NewGameForm from './NewGameForm';
 import Leaderboard from './Leaderboard';
 import NavBar from './NavBar';
+import NewPlayerForm from './NewPlayerForm';
 
 function App() {
 
@@ -14,7 +15,9 @@ function App() {
       < NavBar />
       <Switch>
         {/* vvv Include routes for player pages here vvv. the path will be path= '/players/new */}
-
+        <Route path= '/players/new'>
+          <NewPlayerForm/>
+        </Route>
 
 
         {/* vvv Include routes for game pages here vvv */}
