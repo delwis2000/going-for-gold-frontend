@@ -23,7 +23,6 @@ function NewPlayerForm() {
     function handleFormSubmit(e){
         e.preventDefault()
 
-        let newAlert;
         if (newPlayerForm.name !== "") {
             fetch(`${process.env.REACT_APP_API_URL}/players`, {
                 method: "POST",
@@ -42,6 +41,7 @@ function NewPlayerForm() {
     
     return (
         <FormContainer  >
+            <h3>Add A Player</h3>
             <form onSubmit={handleFormSubmit}>
                 <input onChange={handleFormChange} type="text" name="name" placeholder="player name" />
                 <input onChange={handleFormChange} type="text" name="image" placeholder="Image URL"/>
@@ -71,6 +71,7 @@ border: 1px solid white;
 border-radius: 3px;
 padding: 5px;
 margin-top: 25px;
+text-align: center;
 
 input{
     margin-left: 10px;
@@ -102,6 +103,14 @@ input[type=submit]{
     }
 
 }
+    h3{
+        grid-column: 1 / span 4;
+        margin-top: 0;
+        text-align: center;
+        font-size: 32px;
+        text-shadow: 2px 3px black;
+        
+    }
 
 
 

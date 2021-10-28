@@ -10,7 +10,7 @@ function PlayerScore({ player, activePlayer, handlePlayerClick }) {
         fetch(`${process.env.REACT_APP_API_URL}/players/${player.playerId}`)
             .then(resp => resp.json())
             .then(data => setPlayerInfo(data));
-    }, []);
+    }, [player.playerId]);
 
     if (!playerInfo) return <p>Loading</p>
 

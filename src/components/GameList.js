@@ -15,17 +15,22 @@ function GameList() {
             .then(data => setGameList(data));
     }, []);
 
+    const gameListRows = gameList.length > 0 ? 
+        gameList.map((game, index) => <GameListRow key={game.id} game={game} rowClass={index % 2 === 0 ? 'even' : 'odd'} />)
+        : <span>No open games!</span>
+
     return (
         <>
-            <NewGameLink onClick={() => history.push('/games/new')}>Start a New Game</NewGameLink>
             <GameListContainer>
                 <h3>Resume a Game</h3>
                 <div className='header'>Game ID</div>
                 <div className='header'>Player 1</div>
                 <div className='header'>Player 2</div>
                 <div className='header'>Player 3</div>
-                {gameList.map((game, index) => <GameListRow key={game.id} game={game} rowClass={index % 2 === 0 ? 'even' : 'odd'} />)}
+                {gameListRows}
+                {/* {gameList.map((game, index) => <GameListRow key={game.id} game={game} rowClass={index % 2 === 0 ? 'even' : 'odd'} />)} */}
             </GameListContainer>
+            <NewGameLink onClick={() => history.push('/games/new')}>Start a New Game</NewGameLink>
         </>
     );
 }
@@ -60,7 +65,7 @@ const GameListContainer = styled.div`
     border: 1px solid white;
     border-radius: 3px;
     margin: auto;
-    margin-top: 20px;
+    margin-top: 25px;
     padding: 5px 0;
     background-color: ${props => props.theme.colors.jeopardyBlue};
     text-align: center;
@@ -77,6 +82,9 @@ const GameListContainer = styled.div`
         font-size: 32px;
         text-shadow: 2px 3px black;
         /* text-decoration: underline; */
+    }
+    &>span{
+        grid-column: 1 / span 4;
     }
     .header {
         font-weight: bold;

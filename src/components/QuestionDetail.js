@@ -19,7 +19,7 @@ function QuestionDetail({ gameData, handlePass, guess, handleGuessChange, handle
                 break;
             }
         }
-    }, [questionId]);
+    }, [questionId, gameData.categories]);
 
     if (!questionData) return <h1>Loading</h1>;
 

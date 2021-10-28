@@ -7,7 +7,7 @@ function NavBar() {
     return (
     <NavContainer>
      <Link to= "/"> 
-     Home
+     Going For Gold!
      </Link>
 
      <Link to= "/games">
@@ -15,7 +15,7 @@ function NavBar() {
      </Link>
 
      <Link to= "/players/new">
-     Newplayerform
+     Add Player
      </Link>
     </NavContainer>
     );

@@ -104,6 +104,7 @@ const FormContainer = styled.div`
 
 const GameForm = styled.form`
     margin: auto;
+    margin-top: 20px;
     width: fit-content;
     font-family: ${props => props.theme.fonts.sansSerif};
     color: white;

@@ -150,7 +150,7 @@ function GameBoard() {
     const activePlayer = !history.location.pathname.includes('/questions/') ? gameData.boardControl : answeringPlayer.id;
 
     return (
-        <GameContainer>
+        <div>
             <QuestionBoard>
                 <Switch>
                     <Route path='/games/:gameId/questions/:questionId'>
@@ -167,22 +167,22 @@ function GameBoard() {
             <div>
                 <CloseButton onClick={handlePayout}>Close Game and Pay Out</CloseButton>
             </div>
-        </GameContainer>
+        </div>
     );
 }
 
 export default GameBoard;
 
-const GameContainer = styled.div`
-    /* width: 100vw; */
-    height: 100vh;
-    background-color: black;
-`;
+// const GameContainer = styled.div`
+//     width: 100vw;
+//     height: 100vh;
+//     background-color: black;
+// `;
 
 const QuestionBoard = styled.div`
     display: flex;
     font-family: ${props => props.theme.fonts.sansSerif};
-    background-color: black;
+    /* background-color: black; */
     justify-content: center;
     margin-bottom: 10px;
     div {
