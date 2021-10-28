@@ -2,5 +2,7 @@ body {
  background-image: linear-gradient(to bottom right, #202124, black) ;
  background-size: cover; 
  background-repeat: no-repeat;
+ background-attachment: fixed;
  height: 100vh;
+ padding-bottom: 25px;
 }

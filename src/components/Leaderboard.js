@@ -55,6 +55,7 @@ border: 1px solid white;
 border-radius: 3px;
 padding: 5px;
 margin-top: 25px;
+margin-bottom: 25px;
 h3{
 text-align: center;  
 margin: 0;

@@ -6,11 +6,12 @@ import NewGameForm from './NewGameForm';
 import Leaderboard from './Leaderboard';
 import NavBar from './NavBar';
 import NewPlayerForm from './NewPlayerForm';
+import styled from 'styled-components';
 
 function App() {
 
   return (
-    <div>
+    <AppContainer>
      {/* add a Nav Bar here */}
       < NavBar />
       <Switch>
@@ -36,8 +37,12 @@ function App() {
           <Leaderboard/>
         </Route>
       </Switch>
-    </div>
+    </AppContainer>
   );
 }
 
 export default App;
+
+const AppContainer = styled.div`
+  padding-bottom: 35px;
+`;
