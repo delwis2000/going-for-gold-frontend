@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { useHistory } from 'react-router-dom';
+import styled from 'styled-components'
 
 function NewPlayerForm() {
 
@@ -21,20 +22,26 @@ function NewPlayerForm() {
 
     function handleFormSubmit(e){
         e.preventDefault()
+
+        let newAlert;
+        if (newPlayerForm.name !== "") {
+            fetch(`${process.env.REACT_APP_API_URL}/players`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(newPlayerForm)
+                })
+                .then(response => response.json())
+                .then(data => history.push("/"))
+            }   
+        }
         
 
-    fetch(`${process.env.REACT_APP_API_URL}/players`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(newPlayerForm)
-        })
-        .then(response => response.json())
-        .then(data => history.push("/"))
-    }
+    
+    
     return (
-        <div  >
+        <FormContainer  >
             <form onSubmit={handleFormSubmit}>
                 <input onChange={handleFormChange} type="text" name="name" placeholder="player name" />
                 <input onChange={handleFormChange} type="text" name="image" placeholder="Image URL"/>
@@ -44,10 +51,58 @@ function NewPlayerForm() {
             </form>
 
             
-        </div>
+        </FormContainer>
     );
 }
 
 export default NewPlayerForm;
 // Only need 2 inputs (Name and image link- example check plantsy for image url) use State 
 // then fetch request to post it to the database 
+
+const FormContainer = styled.div`
+background-color: ${props=> props.theme.colors.jeopardyBlue};
+max-width: 600px;
+font-family: ${props=> props.theme.fonts.sansSerif};
+color: white; 
+font-size: large;
+text-shadow: 1px 1px black;
+margin: auto;
+border: 1px solid white;
+border-radius: 3px;
+padding: 5px;
+margin-top: 25px;
+
+input{
+    margin-left: 10px;
+    padding: 0 5px;
+    border-radius: 5px;
+    background-color: ${props => props.theme.colors.jeopardyDarkBlue};
+    color: white;
+    font-family: ${props => props.theme.fonts.sansSerif};
+    font-size: 18px;
+    text-shadow: 1px 1px black;
+}
+
+input[type=submit]{
+    cursor: pointer;
+    border: 3px solid ${props => props.theme.colors.jeopardyYellow};
+    border-radius: 10px;
+    color: ${props => props.theme.colors.jeopardyYellow};
+    text-shadow: 1px 1px black;
+    background-color: ${props => props.theme.colors.jeopardyBlue};
+    padding: 10px;
+    font-weight: bold;
+    font-size: large;
+    display: block;
+    margin: auto;
+    margin-top: 20px;
+    transition: background-color 0.25s;
+    &:hover {
+        background-color: ${props => props.theme.colors.jeopardyDarkBlue};
+    }
+
+}
+
+
+
+`
