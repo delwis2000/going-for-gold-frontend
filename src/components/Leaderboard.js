@@ -1,8 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import GameList from './GameList';
-import NewGameForm from './NewGameForm';
-import NewPlayerForm from './NewPlayerForm';
-import PlayerScore from './PlayerScore';
 import styled from 'styled-components';
 
 function Leaderboard() {
