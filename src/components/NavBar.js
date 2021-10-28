@@ -13,7 +13,7 @@ function NavBar() {
      Games
      </Link>
 
-     <Link to= "/newplayerform">
+     <Link to= "/players/new">
      Newplayerform
      </Link>
     </div>
