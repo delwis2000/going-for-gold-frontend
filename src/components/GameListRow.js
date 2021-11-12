@@ -10,10 +10,9 @@ function GameListRow({ game, rowClass }) {
             .then(data => setPlayers(data));
     }, []);
 
-    if (!players) return <div>Loading</div>
+    if (!players) return <div>Loading</div>;
 
     return (
-        // <Link to={`/games/${game.id}`}>
         <>
             <Link to={`/games/${game.id}`} className={rowClass}>
                 Game {game.id}
@@ -21,13 +20,11 @@ function GameListRow({ game, rowClass }) {
             {game.players.map(includedPlayer => (
                 <div key={includedPlayer.playerId} className={rowClass}>
                     {players.find(player => player.id === includedPlayer.playerId).name} 
-                    {/* (${includedPlayer.winnings}) */}
                     {includedPlayer.winnings < 0 ? ` (-$${-includedPlayer.winnings})` : ` ($${includedPlayer.winnings})`}
                 </div>
             ))}
         </>
-        // </Link>
-    )
+    );
 }
 
 export default GameListRow

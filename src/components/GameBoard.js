@@ -14,7 +14,6 @@ function GameBoard() {
     const history = useHistory();
 
     useEffect(() => {
-        // TODO: fetch game by id based on URL
         fetch(`${process.env.REACT_APP_API_URL}/games/${gameId}`)
             .then(resp => resp.json())
             .catch(err => {
@@ -173,16 +172,9 @@ function GameBoard() {
 
 export default GameBoard;
 
-// const GameContainer = styled.div`
-//     width: 100vw;
-//     height: 100vh;
-//     background-color: black;
-// `;
-
 const QuestionBoard = styled.div`
     display: flex;
     font-family: ${props => props.theme.fonts.sansSerif};
-    /* background-color: black; */
     justify-content: center;
     margin-bottom: 10px;
     div {
@@ -199,7 +191,6 @@ const CloseButton = styled.button`
     background-color: ${props => props.theme.colors.jeopardyBlue};
     padding: 10px;
     font-family: ${props => props.theme.fonts.sansSerif};
-    /* font-weight: bold; */
     font-size: large;
     display: block;
     margin: auto;

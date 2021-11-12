@@ -10,7 +10,7 @@ function NewGameForm() {
     const [formData, setFormData] = useState({
         player1: '',
         player2: '',
-        player3: '',
+        player3: ''
     });
 
     const history = useHistory();
@@ -59,7 +59,6 @@ function NewGameForm() {
                 .then(resp => resp.json())
                 .then(data => {
                     setDisabled(true);
-                    // setTimeout(() => {history.push(`/games/${data.id}`)}, 500);
                     history.push(`/games/${data.id}`);
                 });
         }
@@ -82,25 +81,19 @@ function NewGameForm() {
     ));
 
     return (
-        <FormContainer>
-            <GameForm onSubmit={handleFormSubmit}>
-                <FormBody>
-                    <FormTitle>Start New Game</FormTitle>
-                    <span>Choose three players to start a new game:</span>
-                    {alert ? <div className='alert'>{alert}</div> : null}
-                    {inputs}
-                </FormBody>
-                <SubmitButton type='submit' disabled={disabled} />
-            </GameForm>
-        </FormContainer>
+        <GameForm onSubmit={handleFormSubmit}>
+            <FormBody>
+                <FormTitle>Start New Game</FormTitle>
+                <span>Choose three players to start a new game:</span>
+                {alert ? <div className='alert'>{alert}</div> : null}
+                {inputs}
+            </FormBody>
+            <SubmitButton type='submit' disabled={disabled} />
+        </GameForm>
     );
 }
 
 export default NewGameForm;
-
-const FormContainer = styled.div`
-    /* margin: auto; */
-`;
 
 const GameForm = styled.form`
     margin: auto;

@@ -28,7 +28,6 @@ function GameList() {
                 <div className='header'>Player 2</div>
                 <div className='header'>Player 3</div>
                 {gameListRows}
-                {/* {gameList.map((game, index) => <GameListRow key={game.id} game={game} rowClass={index % 2 === 0 ? 'even' : 'odd'} />)} */}
             </GameListContainer>
             <NewGameLink onClick={() => history.push('/games/new')}>Start a New Game</NewGameLink>
         </>
@@ -81,7 +80,6 @@ const GameListContainer = styled.div`
         text-align: center;
         font-size: 32px;
         text-shadow: 2px 3px black;
-        /* text-decoration: underline; */
     }
     &>span{
         grid-column: 1 / span 4;
