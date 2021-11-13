@@ -1,6 +1,7 @@
 import { Route, Switch } from 'react-router-dom';
 import styled from 'styled-components';
 import './App.css';
+import About from './About';
 import GameBoard from './GameBoard';
 import GameList from './GameList';
 import NewGameForm from './NewGameForm';
@@ -31,6 +32,7 @@ function App() {
                 </Route>
 
                 <Route path='/'>
+                    <About />
                     <Leaderboard />
                 </Route>
             </Switch>

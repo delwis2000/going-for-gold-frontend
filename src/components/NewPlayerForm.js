@@ -43,8 +43,11 @@ function NewPlayerForm() {
         <FormContainer  >
             <h3>Add A Player</h3>
             <form onSubmit={handleFormSubmit}>
-                <input onChange={handleFormChange} type="text" name="name" placeholder="player name" />
-                <input onChange={handleFormChange} type="text" name="image" placeholder="Image URL"/>
+                Name: 
+                <input onChange={handleFormChange} type="text" name="name" placeholder="Player Name" />
+                <br /><br />
+                Image:
+                <input onChange={handleFormChange} type="text" name="image" placeholder="Image URL" />
                 
                 <input type="submit" value="Add New Player"/>
         
